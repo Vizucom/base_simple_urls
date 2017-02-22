@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from openerp.addons.web import http
 from openerp.addons.web.http import request
+from openerp.addons.web.controllers.main import ensure_db
 import werkzeug
 import logging
 
@@ -11,6 +12,12 @@ class SimpleUrlController(http.Controller):
 
     @http.route('/redir', type='http', auth="user")
     def redirect(self, **args):
+
+        ensure_db()
+        if not request.session.uid:
+            return werkzeug.utils.redirect('/web/login', 303)
+
+        request.uid = request.session.uid
 
         if len(args) != 1:
             _logger.debug("Wrong number of GET parameters ({})".format(args))
