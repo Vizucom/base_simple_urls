@@ -11,6 +11,7 @@
           <field name="model_id" options="{'no_create': True}"/>
           <field name="field_id" options="{'no_create': True}" domain="[('model_id', '=', model_id)]"/>
           <field name="action_id" options="{'no_create': True}"/>
+          <field name="description"/>
         </tree>
       </field>
     </record>

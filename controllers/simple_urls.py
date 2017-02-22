@@ -9,16 +9,14 @@ _logger = logging.getLogger(__name__)
 
 class SimpleUrlController(http.Controller):
 
-    @http.route('/redirect', type='http', auth="user")
+    @http.route('/redir', type='http', auth="user")
     def redirect(self, **args):
 
-        ''' Check that the url contains only one GET parameter '''
         if len(args) != 1:
             _logger.debug("Wrong number of GET parameters ({})".format(args))
             return werkzeug.utils.redirect('/web')
 
         key, value = args.popitem()
-
         rule_model = request.env['base_simple_urls.redirect_rule']
         matching_rule = rule_model.search([('get_variable', '=', key)])
 
@@ -35,6 +33,7 @@ class SimpleUrlController(http.Controller):
             _logger.debug("Wrong number of search results. GET parameters: {}".format(args))
             return werkzeug.utils.redirect('/web')
 
+        ''' Form the URL and redirect the user '''
         url_params = {
             'view_type': 'form',
             'model': matching_rule[0].model_id.model,

@@ -23,11 +23,12 @@
 Simple URLs
 ===========
 * Makes it possible to create redirection rules so that users can access Odoo pages with simpler URLs.
-* E.g. a rule could be created to have URL http://<odoo url>:<port>/redirect?pr=<product's internal reference> point to a product's form view instead of using the normal http://<odoo url>:<port>/web#id=13238&view_type=form&model=product.product&menu_id=283&action=360
+* E.g. a rule could be created to have URL http://<odoo url>:<port>/redir?pr=<product's internal reference> point to a product's form view instead of using the normal http://<odoo url>:<port>/web#id=13238&view_type=form&model=product.product&menu_id=283&action=360
 * Rules are freely configurable in Settings menu by users that have Technical Features access rights
 
 """,
     'data': [
+        'security/ir.model.access.csv',
         'views/redirect_rule.xml',
     ],
 }
