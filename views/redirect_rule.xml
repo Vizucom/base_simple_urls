@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <record id="redirect_rule_tree_view" model="ir.ui.view">
+      <field name="name">Simple Urls - Redirect Rule tree</field>
+      <field name="model">base_simple_urls.redirect_rule</field>
+      <field name="arch" type="xml">
+        <tree string="Redirect Rules" editable="top">
+          <field name="get_variable"/>
+          <field name="model_id" options="{'no_create': True}"/>
+          <field name="field_id" options="{'no_create': True}" domain="[('model_id', '=', model_id)]"/>
+          <field name="action_id" options="{'no_create': True}"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="redirect_rule_action" model="ir.actions.act_window">
+      <field name="name">Redirect Rules</field>
+      <field name="res_model">base_simple_urls.redirect_rule</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Place menuitem under Settings -> Technical 3-->
+    <menuitem action="redirect_rule_action" id="menuitem_redirect_rules" parent="base.menu_custom" sequence="50"/>
+
+  </data>
+</openerp>
