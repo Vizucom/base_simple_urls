@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from openerp.addons.web import http
-from openerp.addons.web.http import request
-from openerp.addons.web.controllers.main import ensure_db
+from odoo import http
+from odoo.http import request
+from odoo.addons.web.controllers.main import ensure_db
 import werkzeug
 import logging
 
