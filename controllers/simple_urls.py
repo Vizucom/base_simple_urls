@@ -34,7 +34,10 @@ class SimpleUrlController(http.Controller):
         ''' Do a case insensitive search to the model and field defined in the
         redirect rule, e.g. product.product's default_code field '''
         target_model = request.env[matching_rule[0].model_id.model]
-        matching_ids = target_model.search([(matching_rule[0].field_id.name, '=ilike', value)])
+        if matching_rule[0].field_id.ttype == 'integer':
+            matching_ids = target_model.search([(matching_rule[0].field_id.name, '=', value)])
+        else:
+            matching_ids = target_model.search([(matching_rule[0].field_id.name, '=ilike', value)])
 
         if len(matching_ids) != 1:
             _logger.debug("Wrong number of search results. GET parameters: {}".format(args))

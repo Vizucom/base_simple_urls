@@ -9,7 +9,7 @@
         <tree string="Redirect Rules" editable="top">
           <field name="get_variable"/>
           <field name="model_id" options="{'no_create': True}"/>
-          <field name="field_id" options="{'no_create': True}" domain="[('model_id', '=', model_id)]"/>
+          <field name="field_id" options="{'no_create': True}" domain="[('model_id', '=', model_id), ('ttype', 'in', ['integer', 'char', 'text'])]"/>
           <field name="action_id" options="{'no_create': True}"/>
           <field name="description"/>
         </tree>
